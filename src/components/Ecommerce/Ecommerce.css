@@ -1,0 +1,9 @@
+.setbg{
+    background-image: url('./welcome-bg.svg');
+    
+    background-position: center;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    
+    background-origin: border-box;
+}
