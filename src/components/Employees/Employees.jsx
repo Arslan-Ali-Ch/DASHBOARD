@@ -6,13 +6,13 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import avatar from '../../data/avatar.jpg'
-import {ordersData,contextMenuItems,ordersGrid} from '../../data/dummy'
+import {employeesGrid,contextMenuItems,employeesData} from '../../data/dummy'
 import {GridComponent,ColumnsDirective,ColumnDirective,Resize,Sort,ContextMenu,Filter,Page,ExcelExport,
-PdfExport,Edit,Inject} from '@syncfusion/ej2-react-grids';
+PdfExport,Edit,Inject,Search, Toolbar} from '@syncfusion/ej2-react-grids';
 
 
 
-const Order = () => {
+const Employees = () => {
   //   const gridStyle = useMemo(() => ({ height: '500px', width: '100%' }), []);
   //   const userImg = (params) => {
   //     return (
@@ -86,25 +86,26 @@ const Order = () => {
       <div className='mb-10'>
         <p className='text-gray-400'>Page</p>
         <p className='text-3xl font-extrabold 
-        tracking-tight text-slate-900'>Oders</p>
+        tracking-tight text-slate-900'>Employees</p>
       </div>
      
       <GridComponent
-      dataSource={ordersData}
+      dataSource={employeesData}
       allowPaging
-      allowSorting>
+      allowSorting
+      toolbar={['Search']}>
         
         <ColumnsDirective>
-        {ordersGrid.map((item,index)=>(
+        {employeesGrid.map((item,index)=>(
           <ColumnDirective key={index} {...item} />
         ))}
         </ColumnsDirective>
         <Inject services={[Resize,Sort,
-        ContextMenu,Filter,Page,ExcelExport,Edit,PdfExport]}></Inject>
+        ContextMenu,Filter,Page,ExcelExport,Edit,PdfExport,Search,Toolbar]}></Inject>
       </GridComponent>
   
     </div>
   )
 }
 
-export default Order
+export default Employees;

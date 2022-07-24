@@ -4,6 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextProvider } from './context/ContextProvider';
+import { registerLicense } from '@syncfusion/ej2-base';
+
+fetch("http://localhost:4500/syncapi")
+.then(
+      res=>res.json()
+    )
+.then(
+      json=>{
+        registerLicense(json.key+"")
+      console.log(typeof(json.key));
+      }
+    );
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

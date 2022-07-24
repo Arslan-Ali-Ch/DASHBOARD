@@ -8,14 +8,14 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import avatar from '../../data/avatar.jpg'
 import { useStateContext } from '../../context/ContextProvider'
 import { IconButton, Tooltip } from '@mui/material'
-import Cart from '../navBarComponent/cart/Cart'
-import Chat from '../navBarComponent/chat/Chat'
-import Notification from '../navBarComponent/notification/Notification'
-import Profile from '../navBarComponent/profile/Profile'
+import Cart from '../navBarComp/Cart'
+import Chat from '../navBarComp/Chat'
+import Profile from '../navBarComp/Profile'
+import Notification from '../navBarComp/Notification'
 import { useEffect } from 'react'
 
 const NavBar = () => {
-    const { activeMenu, setActiveMenu,isClicked,setIsClicked,handleClick,screenSize,setScreenSize } = useStateContext();
+    const {cart,chat,notification,profile,currentColor, activeMenu, setActiveMenu,isClicked,setIsClicked,handleClick,screenSize,setScreenSize } = useStateContext();
 
 
     useEffect(()=>{
@@ -66,7 +66,7 @@ const NavBar = () => {
         <div className='flex justify-between p-2 md:mx-6 relative'>
             <NavButton
                 title="Menu" customfunc={() => setActiveMenu((prev) => !prev)}
-                color="blue"
+                color={currentColor}
                 icon={<AiOutlineMenu />}
             >
 
@@ -75,7 +75,7 @@ const NavBar = () => {
                 <NavButton
                     title="cart"
                     customfunc={() => handleClick('cart')}
-                    color="blue"
+                    color={currentColor}
                     icon={<FiShoppingCart />}
                 >
 
@@ -84,7 +84,7 @@ const NavBar = () => {
                     title="chat"
                     dotcolor='blue'
                     customfunc={() => handleClick('chat')}
-                    color="blue"
+                    color={currentColor}
                     icon={<BsChatLeft />}
                 >
 
@@ -93,7 +93,7 @@ const NavBar = () => {
                     title="notification"
                     dotcolor='yellow'
                     customfunc={() => handleClick('notification')}
-                    color="blue"
+                    color={currentColor}
                     icon={<RiNotification3Line />}
                 >
 
@@ -110,10 +110,10 @@ const NavBar = () => {
                     <MdKeyboardArrowDown className='text-gray-400 text-xl'/>
                 </div>
             </Tooltip>
-            {isClicked.cart && <Cart/>}
-            {isClicked.chat && <Chat/>}
-            {isClicked.notification && <Notification/>}
-            {isClicked.profile && <Profile/>}
+            {cart && <Cart/>}
+            {chat && <Chat/>}
+            {notification && <Notification/>}
+            {profile && <Profile/>}
 
 
             </div>

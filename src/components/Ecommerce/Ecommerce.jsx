@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 import { BarChart,Bar,LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Ecommerce = () => {
-
+const {currentColor}=useStateContext();
     
 const data = [
     {
@@ -70,7 +70,7 @@ const data = [
                 </div>
             </div>
             <div className='mt-6'>
-                <Button sx={{color:'white',backgroundColor:'blue', borderRadius:'10px'}}>
+                <Button sx={{color:'white',backgroundColor:currentColor, borderRadius:'10px'}}>
                     Download
                 </Button>
             </div>
@@ -118,8 +118,8 @@ const data = [
         justify-center'>
             {/** container for charts with bg and width */}
         
-            <div className='bg-white 
-            dark:text-gray-200 dark:bg-secondary-dark m-3 p-4 rounded-2xl md:w-780'>
+            <div className='bg-white dark:text-gray-100
+                        dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780'>
                 {/** container for revenue section*/}
         
                 <div className='flex justify-between'>
@@ -141,7 +141,7 @@ const data = [
                     </div>
                 </div>
 {/** container for actual charts */}
-        <div className='mt-10 flex gap-10 flex-wrap justify-center'>
+        <div className=' mt-10 flex gap-10 flex-wrap justify-center'>
                {/** container for left chart */}
         
                 <div className='border-r-1
@@ -172,7 +172,7 @@ const data = [
                     
                     </div>
                     <div className='mt-8'>
-                    <Button sx={{color:'white',backgroundColor:'blue', borderRadius:'10px'}}>
+                    <Button sx={{color:'white',backgroundColor:currentColor, borderRadius:'10px'}}>
                     Download Report
                     </Button>
                     </div>

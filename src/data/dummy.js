@@ -22,8 +22,6 @@ import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
-import { simpleHttpRequest } from 'ag-grid-community';
-
 
 export const gridOrderImage = (props) => (
   <div>
@@ -216,7 +214,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'USA',
+    name: 'cityX',
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -226,7 +224,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[1],
     xName: 'x',
     yName: 'y',
-    name: 'France',
+    name: 'CityY',
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -235,7 +233,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[2],
     xName: 'x',
     yName: 'y',
-    name: 'Germany',
+    name: 'cityZ',
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -872,68 +870,52 @@ export const userProfileData = [
   },
 ];
 
-export const dataImage=[avatar,avatar2,avatar3,avatar4,product1,
-  product2,product3,product4,product5,product6,product7];
-const simplecell=()=>{
-  return(
-   <img src={avatar}></img>
-  )
-}
-
 export const ordersGrid = [
   {
-    field:'ProductImage',
-    sortable:true,
-    filter:true,
-    checkbocSelection:true,
-    width: '120',
+    headerText: 'Image',
+    template: gridOrderImage,
+    textAlign: 'Center',
+    width: '100',
   },
   {
-    
-    field:'OrderItems',
-    sortable:true,
-    filter:true,
-    checkbocSelection:true,
-    width: '150',
+    field: 'OrderItems',
+    headerText: 'Item',
+    width: '100',
+    editType: 'dropdownedit',
+    textAlign: 'Center',
   },
-  { 
-  field:'CustomerName',
-  sortable:true,
-  filter:true,
-  checkbocSelection:true,  
-  width: '150',
-   
+  { field: 'CustomerName',
+    headerText: 'Customer Name',
+    width: '100',
+    textAlign: 'Center',
   },
   {
-
-    
     field: 'TotalAmount',
-     sortable:true,
-  filter:true,
-  checkbocSelection:true, 
-    width: '150',
+    headerText: 'Total Amount',
+    format: 'C2',
+    textAlign: 'Center',
+    editType: 'numericedit',
+    width: '100',
   },
   {
-    field: 'Status',
-    sortable:true,
-    filter:true,
-    checkbocSelection:true, 
-    width: '120',
+    headerText: 'Status',
+    template: gridOrderStatus,
+    field: 'OrderItems',
+    textAlign: 'Center',
+    width: '100',
   },
   {
     field: 'OrderID',
-    sortable:true,
-    filter:true,
-    checkbocSelection:true, 
-    width: '120',
+    headerText: 'Order ID',
+    width: '100',
+    textAlign: 'Center',
   },
 
   {
     field: 'Location',
-    sortable:true,
-    filter:true,
-    checkbocSelection:true, 
-    width: '120',
+    headerText: 'Location',
+    width: '100',
+    textAlign: 'Center',
   },
 ];
 
@@ -2138,14 +2120,6 @@ export const employeesData = [
       avatar2,
   },
 ];
-const userImg = ({param}) => {
-  return (
-    <div>
-<img style={{height:'40px' ,width:'40px'}} alt="" class="userListImg" src={avatar}/>    
-    </div>
-        
-        );
-    }
 
 export const ordersData = [
   {
@@ -2157,7 +2131,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    Image:  (params)=>`<img style="height:14px, width:14px" src=${params.data.avatar} />`
+    ProductImage:
+      product6,
   },
   {
     OrderID: 345653,
@@ -2167,6 +2142,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product5,
   },
   {
     OrderID: 390457,
@@ -2176,6 +2153,8 @@ export const ordersData = [
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product7,
   },
   {
     OrderID: 893486,
@@ -2185,6 +2164,8 @@ export const ordersData = [
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 748975,
@@ -2194,6 +2175,8 @@ export const ordersData = [
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
+    ProductImage:
+    product1,
   },
   {
     OrderID: 94757,
@@ -2203,6 +2186,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product2,
   },
   {
     OrderID: 944895,
@@ -2212,6 +2197,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product3,
   },
   {
     OrderID: 845954,
@@ -2221,6 +2208,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 845954,
@@ -2230,6 +2219,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2239,6 +2230,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2248,6 +2241,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2257,6 +2252,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2266,6 +2263,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2276,6 +2275,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      product6,
   },
   {
     OrderID: 345653,
@@ -2285,6 +2286,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product5,
   },
   {
     OrderID: 390457,
@@ -2294,6 +2297,8 @@ export const ordersData = [
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product7,
   },
   {
     OrderID: 893486,
@@ -2303,6 +2308,8 @@ export const ordersData = [
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 748975,
@@ -2312,6 +2319,8 @@ export const ordersData = [
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
+    ProductImage:
+      product1,
   },
   {
     OrderID: 94757,
@@ -2321,6 +2330,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product2,
   },
   {
     OrderID: 944895,
@@ -2330,6 +2341,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product3,
   },
   {
     OrderID: 845954,
@@ -2339,6 +2352,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 845954,
@@ -2348,6 +2363,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2357,6 +2374,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2366,6 +2385,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2375,6 +2396,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2384,6 +2407,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2394,6 +2419,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      product6,
   },
   {
     OrderID: 345653,
@@ -2403,6 +2430,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product5,
   },
   {
     OrderID: 390457,
@@ -2412,6 +2441,8 @@ export const ordersData = [
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product7,
   },
   {
     OrderID: 893486,
@@ -2421,6 +2452,8 @@ export const ordersData = [
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 748975,
@@ -2430,6 +2463,8 @@ export const ordersData = [
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
+    ProductImage:
+      product1,
   },
   {
     OrderID: 94757,
@@ -2439,6 +2474,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product2,
   },
   {
     OrderID: 944895,
@@ -2448,6 +2485,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product3,
   },
   {
     OrderID: 845954,
@@ -2457,6 +2496,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 845954,
@@ -2466,6 +2507,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2475,6 +2518,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2484,6 +2529,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2493,6 +2540,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2502,6 +2551,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2512,6 +2563,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      product6,
   },
   {
     OrderID: 345653,
@@ -2521,6 +2574,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product5,
   },
   {
     OrderID: 390457,
@@ -2530,6 +2585,8 @@ export const ordersData = [
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product7,
   },
   {
     OrderID: 893486,
@@ -2539,6 +2596,8 @@ export const ordersData = [
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 748975,
@@ -2548,6 +2607,8 @@ export const ordersData = [
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
+    ProductImage:
+      product1,
   },
   {
     OrderID: 94757,
@@ -2557,6 +2618,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product2,
   },
   {
     OrderID: 944895,
@@ -2566,6 +2629,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product3,
   },
   {
     OrderID: 845954,
@@ -2575,6 +2640,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 845954,
@@ -2584,6 +2651,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2593,6 +2662,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2602,6 +2673,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2611,6 +2684,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2620,6 +2695,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2630,6 +2707,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      product6,
   },
   {
     OrderID: 345653,
@@ -2639,6 +2718,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product5,
   },
   {
     OrderID: 390457,
@@ -2648,6 +2729,8 @@ export const ordersData = [
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product7,
   },
   {
     OrderID: 893486,
@@ -2657,6 +2740,8 @@ export const ordersData = [
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 748975,
@@ -2666,6 +2751,8 @@ export const ordersData = [
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
+    ProductImage:
+      product1,
   },
   {
     OrderID: 94757,
@@ -2675,6 +2762,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      product2,
   },
   {
     OrderID: 944895,
@@ -2684,6 +2773,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      product3,
   },
   {
     OrderID: 845954,
@@ -2693,6 +2784,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      product4,
   },
   {
     OrderID: 845954,
@@ -2702,6 +2795,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2711,6 +2806,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2720,6 +2817,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2729,6 +2828,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2738,7 +2839,9 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
- },
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+  },
 ];
 
 export const scheduleData = [
@@ -2992,7 +3095,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'Germany',
+    name: 'cityB',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },
@@ -3000,7 +3103,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[1],
     xName: 'x',
     yName: 'y',
-    name: 'England',
+    name: 'cityY',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },
@@ -3008,7 +3111,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[2],
     xName: 'x',
     yName: 'y',
-    name: 'India',
+    name: 'cityX',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },

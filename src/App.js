@@ -1,12 +1,4 @@
-import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { IconButton, Tooltip } from '@mui/material';
 
@@ -15,25 +7,41 @@ import SideBar from './components/sidebar/SideBar';
 import { useStateContext} from './context/ContextProvider';
 import NavBar from './components/navbar/NavBar';
 import Ecommerce from './components/Ecommerce/Ecommerce';
-import product9 from './data/product9.jpg'
 import Order from './components/Order/Order';
+import Employees from './components/Employees/Employees';
+import Customers from './components/Customers/Customers';
+import Calanderss from './components/Calander/Calanderss';
+import KanbanCom from './components/Kanban/KanbanCom';
+import Editor from './components/Editor/Editor';
+import ColorPicker from './components/ColorPicker/ColorPicker';
+import ThemeSetting from './components/themeSetting/ThemeSetting';
+import Line from './components/charts/Line';
+import Area from './components/charts/Area';
+import Bar from './components/charts/Bar';
+import Pie from './components/charts/Pie';
+import Financial from './components/charts/Financial';
+import ColorMapping from './components/charts/ColorMapping';
+import Pyramid from './components/charts/Pyramid';
+import Stacked from './components/charts/Stacked';
 
-library.add(faUser, faCoffee, faCamera, faTwitter, faGithub, faFacebook);
+
+
+
 function App() {
-const {activeMenu}=useStateContext();
 
-  return (
-    <div >
+const {currentColor,currentMod,activeMenu,themeSettings,setThemeSetting}=useStateContext();
+return (
+    <div className={currentMod==='Dark'?'dark':''}>
       <Router>
         <div className="flex relative dark:bg-main-dark-bg">
           
           {/* setting button div*/}
           <div className='fixed right-6 bottom-6 ' style={{zIndex:'1000'}}>
            <Tooltip title="Setting" arrow>
-           <IconButton>
+           <IconButton onClick={()=>setThemeSetting(true)}>
             <FiSettings className='text-5xl p-3 hover:drop-shadow-3xl
-            hover:bg-yellow-600 text-white rounded-full bg-blue-500'
-            
+            hover:bg-yellow-600 text-white rounded-full'
+            style={{backgroundColor:currentColor}}
             />
             </IconButton>
            </Tooltip>
@@ -54,16 +62,15 @@ const {activeMenu}=useStateContext();
           {/*navbar*/}
           <div
             className={
-              activeMenu
-                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
-                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
-            }
+              `dark:bg-main-dark-bg bg-main-bg
+              min-h-screen w-full ${activeMenu ? 'md:ml-72':'flex-2'}`
+           }
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
               <NavBar />
             </div>
             <div  >
-            
+            {themeSettings && <ThemeSetting />}
               <Routes>
                 {/* dashboard  */}
                 <Route path="/" element={(<Ecommerce />)} />
@@ -71,24 +78,24 @@ const {activeMenu}=useStateContext();
 
                 {/* pages  */}
                 <Route path="/orders" element={(<Order/>)}/>
-                <Route path="/employees" element="wdwd"  />
-                <Route path="/customers" element="wdwd"  />
+                <Route path="/employees" element={<Employees/>}  />
+                <Route path="/customers" element={<Customers/>}  />
 
                 {/* apps  */}
-                <Route path="/kanban" element="wdwd" />
-                <Route path="/editor" element="wdwd"  />
-                <Route path="/calendar" element="wdwd" />
-                <Route path="/color-picker" element="wdwd" />
+                <Route path="/kanban" element={<KanbanCom/>} />
+                <Route path="/editor" element={<Editor/>}  />
+                <Route path="/calendar" element={<Calanderss/>} />
+                <Route path="/color-picker" element={<ColorPicker/>} />
 
                 {/* charts  */}
-                <Route path="/line" element="wdwd" />
-                <Route path="/area" element="wdwd"  />
-                <Route path="/bar" element="wdwd" />
-                <Route path="/pie" element="wdwd" />
-                <Route path="/financial" element="wdwd"  />
-                <Route path="/color-mapping" element="wdwd"  />
-                <Route path="/pyramid" element="wdwd"  />
-                <Route path="/stacked" element="wdwd"  />
+                <Route path="/line" element={<Line/>} />
+                <Route path="/area" element={<Area/>}  />
+                <Route path="/bar" element={<Bar/>} />
+                <Route path="/pie" element={<Pie/>}/>
+                <Route path="/financial" element={<Financial/>}  />
+                <Route path="/color-mapping" element={<ColorMapping/>}  />
+                <Route path="/pyramid" element={<Pyramid/>}  />
+                <Route path="/stacked" element={<Stacked/>}  />
 
               </Routes>
             </div>
